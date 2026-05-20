@@ -2,13 +2,44 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
     <card>
-        <title>Basic Configuration</title>
-        <title lang="de-DE">Grundeinstellungen</title>
-        
-        <input-field>
-            <name>example</name>
-            <label>Example Configuration</label>
-            <label lang="de-DE">Beispiel Konfiguration</label>
+        <title>General Settings</title>
+        <title lang="de-DE">Allgemeine Einstellungen</title>
+
+        <input-field type="multi-entity-select">
+            <name>trashCategories</name>
+            <entity>category</entity>
+            <label>Trash Categories</label>
+            <label lang="de-DE">Papierkorb-Kategorien</label>
+            <helpText>Products assigned to these categories will be automatically deactivated.</helpText>
+            <helpText lang="de-DE">Produkte, die diesen Kategorien zugewiesen werden, werden automatisch deaktiviert.</helpText>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>reactivationBehavior</name>
+            <label>Behavior on Category Removal</label>
+            <label lang="de-DE">Verhalten bei Kategorie-Entfernung</label>
+            <options>
+                <option>
+                    <id>manual</id>
+                    <name>Leave inactive (Manual activation required)</name>
+                    <name lang="de-DE">Inaktiv lassen (Manuelle Aktivierung erforderlich)</name>
+                </option>
+                <option>
+                    <id>auto</id>
+                    <name>Automatically reactivate</name>
+                    <name lang="de-DE">Automatisch reaktivieren</name>
+                </option>
+            </options>
+            <defaultValue>manual</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>forceInactive</name>
+            <label>Force Inactive (Override Manual Toggles)</label>
+            <label lang="de-DE">Inaktiv erzwingen (Überschreibt manuelle Änderungen)</label>
+            <helpText>If enabled, prevents a product from being manually activated while it remains in a Trash Category.</helpText>
+            <helpText lang="de-DE">Wenn aktiviert, wird verhindert, dass ein Produkt manuell aktiviert wird, solange es sich in einer Papierkorb-Kategorie befindet.</helpText>
+            <defaultValue>true</defaultValue>
         </input-field>
     </card>
 </config>

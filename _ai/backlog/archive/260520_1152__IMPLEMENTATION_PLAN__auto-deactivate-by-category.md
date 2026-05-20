@@ -1,9 +1,9 @@
----
+implem---
 filename: "_ai/backlog/active/260520_1152__IMPLEMENTATION_PLAN__auto-deactivate-by-category.md"
 title: "Implementation Plan: Auto Deactivate By Category"
 createdAt: 2026-05-20 11:52
 updatedAt: 2026-05-20 11:52
-status: draft
+status: completed
 priority: high
 tags: [shopware6, plugin, products, categories, automation]
 estimatedComplexity: moderate

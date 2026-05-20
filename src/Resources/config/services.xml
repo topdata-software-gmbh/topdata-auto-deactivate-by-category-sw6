@@ -4,19 +4,30 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Topdata\TopdataAutoDeactivateByCategorySW6\Controller\StorefrontExampleController" public="true">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <call method="setTwig">
-                <argument type="service" id="twig"/>
-            </call>
+        <!-- Services -->
+        <service id="Topdata\TopdataAutoDeactivateByCategorySW6\Service\ConfigurationService">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
         </service>
 
-        <service id="Topdata\TopdataAutoDeactivateByCategorySW6\Controller\AdminApiExampleController" public="true">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
+        <service id="Topdata\TopdataAutoDeactivateByCategorySW6\Service\ProductStatusManager">
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="Topdata\TopdataAutoDeactivateByCategorySW6\Service\ConfigurationService"/>
+        </service>
+
+        <!-- Subscribers -->
+        <service id="Topdata\TopdataAutoDeactivateByCategorySW6\Subscriber\ProductCategorySubscriber">
+            <argument type="service" id="Topdata\TopdataAutoDeactivateByCategorySW6\Service\ConfigurationService"/>
+            <argument type="service" id="Topdata\TopdataAutoDeactivateByCategorySW6\Service\ProductStatusManager"/>
+            <argument type="service" id="product.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- Commands -->
+        <service id="Topdata\TopdataAutoDeactivateByCategorySW6\Command\DeactivateExistingProductsCommand">
+            <argument type="service" id="Topdata\TopdataAutoDeactivateByCategorySW6\Service\ConfigurationService"/>
+            <argument type="service" id="Topdata\TopdataAutoDeactivateByCategorySW6\Service\ProductStatusManager"/>
+            <argument type="service" id="product.repository"/>
+            <tag name="console.command"/>
         </service>
     </services>
 </container>
