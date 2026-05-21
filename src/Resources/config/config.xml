@@ -5,14 +5,15 @@
         <title>General Settings</title>
         <title lang="de-DE">Allgemeine Einstellungen</title>
 
-        <input-field type="multi-entity-select">
+        <!-- Changed from <input-field type="multi-entity-select"> to <component name="sw-entity-multi-id-select"> -->
+        <component name="sw-entity-multi-id-select">
             <name>trashCategories</name>
             <entity>category</entity>
             <label>Trash Categories</label>
             <label lang="de-DE">Papierkorb-Kategorien</label>
             <helpText>Products assigned to these categories will be automatically deactivated.</helpText>
             <helpText lang="de-DE">Produkte, die diesen Kategorien zugewiesen werden, werden automatisch deaktiviert.</helpText>
-        </input-field>
+        </component>
 
         <input-field type="single-select">
             <name>reactivationBehavior</name>
@@ -43,3 +44,4 @@
         </input-field>
     </card>
 </config>
+
